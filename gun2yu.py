@@ -378,7 +378,7 @@ class Evil:
         """Конструктор агресивной цели"""
         self.x=random.randint(600, 780)
         self.y=random.randint(10, 30)
-        self.vx = random.randint(-1,1)
+        self.vx = (random.randint(0,1)-0.5)*2
         self.l = random.randint(10, 50)
         self.live=10
         self.color = DRED
@@ -603,10 +603,10 @@ while not finished:
     if k2==0:
         target2.speed()
         k2+=1
-    #gun.move()
+
     target.move()
     target2.move()
-    #evil.boom()
+
     for b in bombs:
         b.move()
         if b.hittest(gun):
@@ -628,8 +628,9 @@ while not finished:
         if b.hite(evil):
             evil.live = 0
             hit()
-
+            b.y=1000
             evil.new_evil()
+            
         if POINTS>=3 and b.hittest(target2):
             target2.live = 0
             hit()
